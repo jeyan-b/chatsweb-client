@@ -1,0 +1,78 @@
+<div class="group-list">
+    <div class="group-list-with-add-btn">
+    <ul>
+        <li *ngFor="let group of allGroups" (click)="joinGroup(group)"  [class.active-room] = "group.chatName === selectedRoomFromMain" [ngStyle]="{'border-left-color': (group.chatName === selectedRoomFromMain) ? group.bgColor : 'transparent'}">
+           
+            <span class="group-image-list">
+                <img src="assets/images/icons/group.png" [ngStyle]="{'background-color': group.bgColor}"/>
+            </span>
+            <span class="group-name-list"> {{group.chatName}}</span>
+          
+        </li>
+
+    </ul>
+    <div class="create-room-btn-holder">
+<button mat-button (click)="openDialog()" class="create-room-btn">Create Room</button>
+</div>
+</div>
+
+</div>
+<!-- <button (click)="createRoom(users[0])">Create Room</button> -->
+<ng-template #callAPIDialog>
+    <h2 mat-dialog-title class="mb-0">Create Room</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="createRoomForm">
+            <div class="form-control-holder">
+                <mat-form-field>
+            <input matInput type="text" formControlName="roomName" placeholder="Room name">
+        </mat-form-field>
+            <span class="text-danger"
+            *ngIf="(createRoomForm.controls['roomName'].touched) && createRoomForm.controls['roomName'].errors?.['required']">
+            Room name is required
+          </span>
+          <span class="text-danger"
+            *ngIf="(createRoomForm.controls['roomName'].touched) && createRoomForm.controls['roomName'].errors?.['minlength']">
+            Minimum length 3 is required
+          </span>
+          <span class="text-danger"
+            *ngIf="(createRoomForm.controls['roomName'].touched) && createRoomForm.controls['roomName'].errors?.['maxlength']">
+            Maximum length is 15 only
+          </span>
+          <span class="text-danger"
+          *ngIf="(createRoomForm.controls['roomName'].touched) && createRoomForm.controls['roomName'].errors?.['incorrect']">
+          Already exists!
+        </span>
+          </div>
+
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="action-section">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button (click)="saveRoomName()" class="room-name-save-btn">Save</button>
+    </mat-dialog-actions>
+    
+</ng-template>
+
+<ng-template #roomSelectionDialog>
+    <h2 mat-dialog-title>Select any one of room to enter</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="dialog-group-list">
+        <div class="group-list">
+            <ul>
+                <li *ngFor="let group of allGroups" (click)="joinGroup(group)" [mat-dialog-close]="true"  [class.active-room] = "group.chatName === selectedRoomFromMain">                   
+                    <span class="group-image-list">
+                        <img src="assets/images/icons/group.png" style="background-color: #ffaff8;"/>
+                    </span>
+                    <span class="group-name-list"> {{group.chatName}}</span>
+                  
+                </li>
+            </ul>        
+        </div>
+    </div>
+    </mat-dialog-content>
+    <!-- <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+    </mat-dialog-actions> -->
+    
+  </ng-template>

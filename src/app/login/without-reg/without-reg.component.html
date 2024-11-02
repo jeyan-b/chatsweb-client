@@ -1,0 +1,50 @@
+<mat-icon class="close-icon-reg-without" (click)="cancel()">close</mat-icon>
+<div class="">
+    <div class="without-login-form-box">
+      <h4>Enter Nick Name</h4>
+      <div class="form-group">
+        <div class="without-example-container">
+          <form class="without-example-container" [formGroup]="withoutLoginForm">
+            <div class="form-control-holder">
+              <mat-form-field>
+                <input matInput formControlName="userName" placeholder="Nick Name" required>
+              </mat-form-field>
+              <span class="text-danger"
+                *ngIf="(withoutLoginForm.controls['userName'].touched) && withoutLoginForm.controls['userName'].errors?.['required']">
+                User name is required
+              </span>
+              <span class="text-danger"
+                *ngIf="(withoutLoginForm.controls['userName'].touched) && withoutLoginForm.controls['userName'].errors?.['minlength']">
+                Minimum length 3 is required
+              </span>
+              <span class="text-danger"
+                *ngIf="(withoutLoginForm.controls['userName'].touched) && withoutLoginForm.controls['userName'].errors?.['maxlength']">
+                Maximum length is 15 only
+              </span>
+              <span class="text-danger"
+              *ngIf="(withoutLoginForm.controls['userName'].touched) && withoutLoginForm.controls['userName'].errors?.['incorrect']">
+              This name is already in use
+            </span>
+            </div>
+            <div class="form-control-holder">
+                <mat-form-field>
+                  <mat-label>Gender</mat-label>
+                  <mat-select [(value)]="selected" formControlName="gender">
+                    <!-- <mat-option>None</mat-option> -->
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                    <mat-option value="transgender">Transgender</mat-option>
+                    <mat-option value="secret">Secret</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <span class="text-danger"
+                  *ngIf="withoutLoginForm.controls['gender'].touched  && withoutLoginForm.controls['gender'].errors?.['required']">
+                  Gender is required
+                </span>
+              </div>
+          </form>
+        </div>
+      </div>
+      <button (click)='login()'>Enter</button>
+    </div>
+  </div>

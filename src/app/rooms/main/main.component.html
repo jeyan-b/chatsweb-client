@@ -1,0 +1,113 @@
+<form [formGroup]="mainForm">
+    <!-- <div>
+    <span class="example-input-label"> Selected tab index: </span>
+    <mat-form-field>
+      <input matInput type="number" [formControl]="selected">
+    </mat-form-field>
+  </div> -->
+  
+  <!-- <div>
+    <button mat-raised-button
+            class="example-add-tab-button"
+            (click)="addTab(selectAfterAdding.checked)">
+      Add new tab
+    </button> 
+    <mat-checkbox #selectAfterAdding> Select tab after adding </mat-checkbox>
+  </div> -->
+  
+  <!-- <mat-tab-group [selectedIndex]="selected.value"
+                 (selectedIndexChange)="selected.setValue($event)" class="mat-tab-header mat-tab-header-pagination-controls-enabled"> -->
+  <mat-tab-group [selectedIndex]="selected.value"
+  (selectedTabChange)="onTabChanged($event);" class="mat-tab-header mat-tab-header-pagination-controls-enabled">
+    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+        <ng-template mat-tab-label>
+            {{tab}}
+            <mat-icon class="example-tab-icon" (click)="removeTab(index, tab)">close</mat-icon>
+
+          </ng-template>
+
+      <!-- Contents for {{tab}} tab -->
+       <div class="message-list-with-send-option" [ngStyle]="{'border-color': activeColor}">
+      <ul class="message-list" id="message-list">
+        <li *ngFor="let msg of allMainMessages| myfilter:mainForm.controls['selectedTabId'].value">
+    <span class="sender-name">{{ msg.sender | getUserName}} : </span>
+    <span class="main-message" *ngIf="!msg.content.includes('data:')">{{ msg.content}}</span>
+    <span class="main-message" *ngIf="msg.content.includes('data:')">
+      <img class="main-message-image" src={{msg.content}} alt="" id="msg-img">
+    </span>
+        </li>
+    </ul>
+
+      <!-- <input type="text" formControlName="selectedTabName">
+      <input type="text" formControlName="selectedTabId"> -->
+      
+
+      
+
+      
+      <emoji-mart class="emoji-mart" [emojiSize]="16" [isNative]="true" [showPreview]="false" [set]="set" emoji="point_up" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart>
+      
+      
+      <div class="main-send-input-btn" [ngStyle]="{'border-color': activeColor}">
+      <textarea type="text" *ngIf="!base64textString.length" id="mainChatInput" formControlName="selectedTabMessage" (blur)="onBlur()" (focus)="onFocus()"></textarea>
+      <div class="image-holder" *ngIf="base64textString.length">
+        <img *ngFor="let item of base64textString"  src={{item}} alt="" id="img">
+        <span class="file-name">{{fileName}}</span>
+        <mat-icon (click)="removeSelectedImage()">close</mat-icon>
+      </div>
+      <div class="send-btns-holder">
+        <button class="emoji-btn" (click) ="toggleEmojiPicker()" [class.emoji-active] = "showEmojiPicker"> 😀</button>
+        <div class="image-upload">
+        <input type="file"  class="hidden" id="upload-photo" (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg" />
+        <label for="upload-photo" class="upload-photo"><mat-icon>image</mat-icon></label>
+      </div>
+        <button class="send-btn" (click)="sendSelectedTabMsg()">Send</button>
+      </div>
+      
+    </div>
+    </div>
+      <!-- <button mat-raised-button
+              class="example-delete-tab-button"
+              [disabled]="tabs.length === 1"
+              (click)="removeTab(index)">
+        Delete Tab
+      </button> -->
+    </mat-tab>
+  </mat-tab-group>
+</form>
+
+
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
+
+
+
+<!-- <form [formGroup]="mainForm">
+    <div formArrayName = 'mainChatInputs'>
+       <div class="example-box" *ngFor="let window of mainWindow.controls; let j= index" [formGroupName] = "j" [id]="'main-window-'+window.value.chatRoomId">
+        <div class="box-header">
+            <div class="header-name">
+                {{window.value.name}}
+            </div>
+            <div class="box-close-icon">
+                <a (click)="closeMainWindow(window, j)">X</a>
+            </div>
+        </div> 
+        <div class="box-body">
+            <ul class="message-list">
+                <li *ngFor="let msg of allMainMessages| myfilter:window.value.chatRoomId">
+            <span [class]="msg.type">{{ msg.content}}</span>
+                </li>
+            </ul>
+    
+            
+        </div>  
+        <div class="box-footer">     
+            <input type="text" formControlName="publicMessage">
+            <button (click)="sendMainMsg(j)">Send</button>
+        </div>  
+      </div>
+      </div>
+    </form> -->

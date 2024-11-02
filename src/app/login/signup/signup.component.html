@@ -1,0 +1,213 @@
+<div class="login-page">
+  <div class="container-fluid pr-0">
+    <div class="row m-0">
+      <div class="col-6 col-md-6 col-xs-hidden pr-0"></div>
+      <div class="col-lg-6 col-md-6 col-xs-12 pr-0">
+        <div class="login-form-holder">
+          <div class="login-form-box">
+            <h4>Sign-Up</h4>
+            <div class="form-group">
+              <div class="example-container">
+                <form class="example-container" [formGroup]="signupForm">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-control-holder">
+                        <mat-form-field>
+                          <mat-label>First Name</mat-label>
+                          <input matInput formControlName="firstName" placeholder="User Name" required>
+                        </mat-form-field>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['firstName'].touched) && signupForm.controls['firstName'].errors?.['required']">
+                          First Name is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['firstName'].touched) && signupForm.controls['firstName'].errors?.['minlength']">
+                          Minimum length 3 is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['firstName'].touched) && signupForm.controls['firstName'].errors?.['maxlength']">
+                          Maximum length is 15 only
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-control-holder">
+                        <mat-form-field>
+                          <mat-label>Last Name</mat-label>
+                          <input matInput formControlName="lastName" placeholder="User Name">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-control-holder">
+                        <mat-form-field>
+                          <mat-label>User Name</mat-label>
+                          <input matInput formControlName="userName" placeholder="User Name" required>
+                        </mat-form-field>
+                        <span class="text-danger"
+                          *ngIf="signupForm.controls['userName'].touched  && signupForm.controls['userName'].errors?.['required']">
+                          User Name is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['userName'].touched) && signupForm.controls['userName'].errors?.['minlength']">
+                          Minimum length 3 is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['userName'].touched) && signupForm.controls['userName'].errors?.['maxlength']">
+                          Maximum length is 15 only
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['userName'].touched) && signupForm.controls['userName'].errors?.['incorrect']">
+                          This name is already in use
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-control-holder">
+                        <mat-form-field>
+                          <mat-label>DOB</mat-label>
+                          <input matInput [matDatepicker]="picker" formControlName="dob" required>
+                          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <span class="text-danger"
+                          *ngIf="signupForm.controls['dob'].touched  && signupForm.controls['dob'].errors?.['required']">
+                          DOB is required
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-control-holder password-eye-padding">
+                        <mat-form-field>
+                          <mat-label>Password</mat-label>
+                          <input matInput [type]="passwordVisible ? 'text' : 'password'" formControlName="password"
+                            placeholder="Password" required>
+                        </mat-form-field>
+                        <div class="eye-icon-holder" (click)="passwordVisible = !passwordVisible"
+                          [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!passwordVisible">
+                          <mat-icon>{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </div>
+                        <span class="text-danger"
+                          *ngIf="signupForm.controls['password'].touched  && signupForm.controls['password'].errors?.['required']">
+                          Password is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['password'].touched) && signupForm.controls['password'].errors?.['minlength']">
+                          Minimum length 3 is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['password'].touched) && signupForm.controls['password'].errors?.['maxlength']">
+                          Maximum length is 15 only
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-control-holder password-eye-padding">
+                        <mat-form-field>
+                          <mat-label>Confirm Password</mat-label>
+                          <input matInput [type]="passwordVisible ? 'text' : 'password'"
+                            formControlName="confirmPassword" placeholder="Password" required>
+                        </mat-form-field>
+                        <div class="eye-icon-holder" (click)="passwordVisible = !passwordVisible"
+                          [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!passwordVisible">
+                          <mat-icon>{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </div>
+                        <span class="text-danger"
+                          *ngIf="signupForm.controls['confirmPassword'].touched  && signupForm.controls['confirmPassword'].errors?.['required']">
+                          Confirm Password is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['confirmPassword'].touched) && signupForm.controls['confirmPassword'].errors?.['minlength']">
+                          Minimum length 3 is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['confirmPassword'].touched) && signupForm.controls['confirmPassword'].errors?.['maxlength']">
+                          Maximum length is 15 only
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['confirmPassword'].touched) && signupForm.controls['confirmPassword'].errors?.['incorrect']">
+                          Password doesn't match
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-control-holder">
+                        <mat-form-field>
+                          <mat-label>Email</mat-label>
+                          <input matInput formControlName="email" placeholder="Email" required>
+                        </mat-form-field>
+                        <span class="text-danger"
+                          *ngIf="signupForm.controls['email'].touched  && signupForm.controls['email'].errors?.['required']">
+                          Email is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['email'].touched) && signupForm.controls['email'].errors?.['minlength']">
+                          Minimum length 3 is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['email'].touched) && signupForm.controls['email'].errors?.['maxlength']">
+                          Maximum length is 50 only
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(signupForm.controls['email'].touched) && signupForm.controls['email'].errors?.['email']">
+                          Invalid email
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-control-holder">
+                        <mat-form-field>
+                          <mat-label>Gender</mat-label>
+                          <mat-select [(value)]="selected" formControlName="gender">
+                            <!-- <mat-option>None</mat-option> -->
+                            <mat-option value="male">Male</mat-option>
+                            <mat-option value="female">Female</mat-option>
+                            <mat-option value="transgender">Transgender</mat-option>
+                            <mat-option value="secret">Secret</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <span class="text-danger"
+                          *ngIf="signupForm.controls['gender'].touched  && signupForm.controls['gender'].errors?.['required']">
+                          Gender is required
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-checkbox class="example-margin" formControlName="agree" (change)="checkValue($event)" />
+                      I have read and agree to Public Chat's <a class="highlight">User Agreement</a> and <a
+                        class="highlight">Privacy Policy</a>
+                      <span class="text-danger agree-error"
+                        *ngIf="signupForm.controls['agree'].touched  && signupForm.controls['agree'].errors?.['required']">
+                        User acknowledgement is required
+                      </span>
+                    </div>
+                  </div>
+                  <!-- <div class="form-control-holder"><mat-form-field>
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="role">                      
+                      <mat-option value="admin">Admin</mat-option>
+                      <mat-option value="user">User</mat-option>
+                      <mat-option value="guest">Guest</mat-option>
+                    </mat-select>
+                  </mat-form-field></div> -->
+                </form>
+              </div>
+            </div>
+            <button (click)='signup()'>Signup</button>
+            <span class="register-now">Existing member ? <a (click)='login()'>Login Now</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

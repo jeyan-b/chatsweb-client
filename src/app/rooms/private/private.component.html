@@ -1,0 +1,36 @@
+
+<div class="users-list">
+    <ul>
+        <li *ngFor="let user of users" (mouseenter)="openMenu(user.userName)" (mouseleave)="hideMenu(user.userName)">
+            <span class="user-image-list">
+                <img src="assets/images/icons/man.png" *ngIf="user.gender === 'male'" style="background-color: #4abeff;"/>
+                <img src="assets/images/icons/woman.png" *ngIf="user.gender === 'female'" style="background-color: pink;"/>
+                <img src="assets/images/icons/transgender.png" *ngIf="user.gender === 'transgender'" style="background-color: #f8bc4d;"/>
+                <img src="assets/images/icons/secret.png" *ngIf="user.gender === 'secret'" style="background-color: #b0b0b0;"/>
+            </span>
+            <span class="user-name-list" *ngIf="user._id === currentUserId">
+                <b *ngIf="user.firstName !== 'empty'">{{user.firstName}} {{user.lastName}}</b>
+                <b *ngIf="user.firstName === 'empty'">{{user.userName}}</b>
+
+            </span>
+            <span class="user-name-list" *ngIf="user._id !== currentUserId">
+                <!-- {{user.firstName}} {{user.lastName}} -->
+                <span *ngIf="user.firstName !== 'empty'">{{user.firstName}} {{user.lastName}}</span>
+                <span *ngIf="user.firstName === 'empty'">{{user.userName}}</span>
+            </span>
+            
+            <div class="user-options" [id]="user.userName">
+                
+                <h5 *ngIf="user.firstName !== 'empty'">{{user.firstName}} {{user.lastName}}</h5>
+                <h5 *ngIf="user.firstName === 'empty'">{{user.userName}}</h5>
+                <ul>
+                    <li *ngIf="user._id !== currentUserId" (click)="openPrivateFromChild.emit(user)">Private</li>
+                    <li *ngIf="user._id !== currentUserId" (click)="mentionFromChild.emit(user)">Mention</li>
+                    <li>About</li>
+                </ul>
+
+            </div>
+        </li>
+    </ul>
+
+</div>

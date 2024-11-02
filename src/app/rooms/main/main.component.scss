@@ -1,0 +1,292 @@
+.example-box {
+  width: 275px;
+  height: 225px;
+    border: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  
+  .example-box:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  .users-list ul{
+    padding: 0;
+  }
+  .users-list ul li{
+    list-style: none;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    background-color: whitesmoke;
+    padding: 5px 10px;
+    position: relative;
+  }
+  .user-options{
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 100%;
+    min-width: 200px;
+    border-right: 15px solid white;
+    background-color: #f4f4f4;
+  }
+  .user-options h5{
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #64c5f0;
+    padding: 5px;
+    margin-bottom: 0px;
+  }
+
+  .users-list ul li .user-options ul li {
+    list-style: none;
+    float: left;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 3px 10px;
+    position: relative;
+}
+.focused{
+  border: 1px solid red;
+}
+.box-header{
+  float: left;
+    width: 100%;
+    display: block;
+    background-color: #0d71f0;
+    padding: 2px;
+    cursor: move;
+}
+.header-name{
+  color: #fff;
+  text-align: left;
+  float: left;
+  padding: 5px;
+}
+.box-close-icon{
+  float: right;
+}
+.box-close-icon button{
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 20px;
+}
+.box-body{
+  float: left;
+    width: 100%;
+    max-height: 155px;
+    overflow: auto;
+}
+.message-list{
+  margin: 0;
+  padding: 10px 15px 0px 15px;
+  height: calc(100% - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.message-list li{
+  list-style: none;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+.message-list li .sent{
+  text-align: right;
+  float: left;
+  width: 100%;
+  display: block;
+}
+.message-list li .received{
+  text-align: left;
+  float: left;
+  width: 100%;
+  display: block;
+}
+.example-input-label,
+.example-add-tab-button,
+.example-delete-tab-button {
+  margin: 8px;
+}
+::ng-deep .mat-mdc-tab .mdc-tab__text-label, ::ng-deep .mat-mdc-tab-link .mdc-tab__text-label {
+  color: black !important;
+  text-transform: capitalize;
+}
+.sender-name{
+  float: left;
+  width: auto;
+  font-weight: 600;
+  padding-right: 10px;
+  text-transform: capitalize;
+}
+.main-message{
+  // float: left;
+
+}
+::ng-deep .mat-mdc-tab.mdc-tab:last-child {
+  border-right: 1px solid #b1b1b1;
+}
+::ng-deep .mat-mdc-tab.mdc-tab {
+  height: 30px !important;
+  flex-grow: 0 !important;
+  font-size: 13px;
+  border: 1px solid #b1b1b1;
+  background-color: #f5f5f5;
+  border-bottom: 0px;
+  border-right: 0px;
+  margin-top: 15px;
+}
+::ng-deep .mdc-tab__text-label .mat-icon{
+  height: 13px;
+  width: 14px;
+  font-size: 12px;
+  position: absolute;
+  right: -20px;
+  background-color: #cccccc;
+  /* color: white; */
+  border-radius: 50%;
+}
+.message-list-with-send-option{
+  float: left;
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  height: calc(100vh - 110px);
+}
+.main-send-input-btn{
+  float: left;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #d3d3d3;
+}
+.main-send-input-btn textarea{
+  float: left;
+  width: 75%;
+  height: 80px;
+  outline: none;
+}
+.main-send-input-btn textarea:focus{
+ box-shadow: 0px 0px 3px #0d71f0;
+}
+
+.send-btns-holder{
+  float: right;
+  width: calc(25% - 10px);
+  height: 80px;
+}
+.send-btn{
+  border: none;
+  background-color: var(--blue);
+  color: #fff;
+  text-transform: uppercase;
+    font-weight: bold;
+    float: left;
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+}
+.emoji-btn{
+  height: 25px;
+  font-size: 15px;
+  width: 35px;
+  border: none;
+  background-color: #d6d7d8;
+  position: relative;
+  float: left;
+}
+.image-upload{
+  height: 25px;
+  font-size: 15px;
+  width: 35px;
+  border: none;
+  background-color: #d6d7d8;
+  float: left;
+  text-align: center;
+  margin-left: 10px;
+}
+.image-upload .upload-photo .mat-icon{
+  font-size: 20px;
+  line-height: 24px;
+  color: #0d6efd;
+}
+::ng-deep .emoji-mart{
+  position: absolute;
+  bottom: 50px;
+  right: 0px;
+}
+::ng-deep .emoji-mart-category-label span,
+::ng-deep .emoji-mart-search input{
+  font-size: 14px;
+}
+.emoji-active{
+  background-color: var(--blue);
+}
+.emoji-active::after{
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #d3d3d3;
+  clear: both;
+  transform: rotate(0deg);
+}
+.image-holder{
+  float: left;
+    width: 80%;
+    height: 80px;
+    border: 1px solid;
+    padding: 10px;
+    position: relative;
+}
+.image-holder img{
+  max-width: 100%;
+  height: 100%;
+  border: 1px solid;
+}
+.upload-photo {
+  cursor: pointer;
+  /* Style as you please, it will become the visible UI component. */
+}
+
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+.image-holder .mat-icon{
+  font-size: 20px;
+    position: absolute;
+    right: 5px;
+    background-color: #cfcfcf;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    top: 5px;
+    cursor: pointer;
+}
+.file-name{
+  margin-left: 10px;
+  font-size: 12px;
+}
+.main-message-image{
+  max-width: 250px;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+}

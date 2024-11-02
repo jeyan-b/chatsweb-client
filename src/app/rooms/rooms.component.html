@@ -1,0 +1,130 @@
+<form [formGroup]="privateChatForm">
+    <div formArrayName = 'privateChatInputs'>
+        <!-- <div *ngFor="let phone of privateWindow.controls; let i=index" [formGroupName] = "i"> -->
+    <!-- <div class="example-box" cdkDrag [cdkDragData]="item.userName" *ngFor="let item of privateChats; let j= index" [id]="'private-window'+item._id"> -->
+    <div class="example-box" cdkDrag  [cdkDragData]="window.value.name" *ngFor="let window of privateWindow.controls; let j= index" [formGroupName] = "j" [id]="'private-window'+window.value.chatRoomId" (click)="adjustIndex('private-window'+window.value.chatRoomId, $event)">
+        <div class="box-header" cdkDragHandle>
+            <div class="header-name">
+                {{window.value.name}}
+            </div>
+            <div class="box-close-icon">
+                <a (click)="closePrivateWindow(window, j)">X</a>
+            </div>
+        </div> 
+        <div class="box-body" [id]="'box-body'+j">
+            <ul class="message-list">
+                <li *ngFor="let msg of allMessages| myfilter:window.value.chatRoomId">
+            <!-- {{ msg | json}} -->
+            <div [class]="msg.type" *ngIf="msg.type ==='received'">
+                <span class="sender-name">{{ msg.name}}: </span>
+                <span class="msg-content" *ngIf="!msg.content.includes('data:')">{{ msg.content}}</span>
+    <span class="msg-content" *ngIf="msg.content.includes('data:')">
+      <img class="msg-content-image" src={{msg.content}} alt="" id="msg-img">
+    </span>
+
+            </div>
+            <div [class]="msg.type" *ngIf="msg.type ==='sent'">
+                <span class="msg-content" *ngIf="!msg.content.includes('data:')">{{ msg.content}}</span>
+                <span class="msg-content" *ngIf="msg.content.includes('data:')">
+                  <img class="msg-content-image" src={{msg.content}} alt="" id="msg-img">
+                </span>
+                <span class="sender-name">{{ msg.name}}: </span>
+            </div>
+          
+                </li>
+            </ul>
+    
+            
+        </div>  
+        <div class="box-footer">     
+            <!-- <input type="text" formControlName="privateMessage"> -->
+      <emoji-mart class="emoji-mart" [emojiSize]="16" [isNative]="true" [showPreview]="false" [set]="set" emoji="point_up" *ngIf="window.value.emoji" (emojiSelect)="addEmoji($event, j)" title="Pick your emoji…"></emoji-mart>
+      <textarea type="text" *ngIf="!base64textString.length" [id]="'privateChatInput'+j" formControlName="privateMessage" (blur)="onBlur()" (focus)="onFocus()"></textarea>
+      <div class="image-holder" *ngIf="base64textString.length">
+        <img *ngFor="let item of base64textString"  src={{item}} alt="" id="img">
+        <span class="file-name">{{fileName}}</span>
+        <mat-icon (click)="removeSelectedImage()">close</mat-icon>
+      </div>
+      <div class="send-btns-holder">
+        <button class="emoji-btn" (click)="toggleEmojiPicker($event, j)" [class.emoji-active] = "window.value.emoji"> 😀</button>
+        <div class="image-upload">
+        <input type="file"  id="upload-photo" (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg" />
+        <label for="upload-photo" class="upload-photo"><mat-icon>image</mat-icon></label>
+      </div>
+        <button class="send-btn" (click)="sendPrivateMsg(j, window.value)">Send</button>
+      </div>
+            <!-- <div *ngIf="privateChatForm.get('name')?.errors?.required">Name is required</div> -->
+            <!-- <button (click)="sendPrivateMsg(j)">Send</button> -->
+        </div>  
+      </div>
+      <!-- </div> -->
+      </div>
+    </form>
+
+<div class="container-fluid">
+    <div class="row header">
+        <div class="col-3">
+            <span class="logo">
+                <img src="assets/images/logo-white.png" class="logo-icon">
+
+            </span>
+        </div>
+        <div class="col-6">
+            <div class="notification-banner">
+                <div class="animated">
+                    <span>
+                Sharing Phone no: or email is strictly PROHIBITED within the Chat and Dont phone-call any numbers nor messaging to other platforms, otherwise you will be fully responsible for your acts and action can be taken as per the laws by the law and enforcement agencies for any bad activity found
+                   </span> 
+            </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <ul class="top-menu-item">
+                <li class="username" [matMenuTriggerFor]="menu">
+                    <img src="assets/images/icons/man.png" class="user-icon">
+                    <span *ngIf="currentUser.firstName !== 'empty'">{{currentUser.firstName}} {{currentUser.lastName}}</span>
+                    <span *ngIf="currentUser.firstName === 'empty'">{{currentUser.userName}}</span>
+                    <mat-menu #menu="matMenu" yPosition="below">
+                        <button mat-menu-item (click)="profileClick(currentUser)">Profile</button>
+                        <button mat-menu-item (click)="logout()">Logout</button>
+                      </mat-menu>
+                </li>
+            </ul>
+           
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-4">
+        <div class="main-room">
+<app-main [socket]="socket" [users]="users"></app-main>
+        </div>
+
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-8">
+        <div class="row">
+            <div class="col-6 pl-0 pr-0">
+                <div class="users-holder" [ngStyle]="{'border': '1px solid '+activeColor}">
+                    <h3 [ngStyle]="{'background-color': activeColor, 'color': 'black'}">Users</h3>
+        <app-private [users]="roomSpecificUsers" (openPrivateFromChild)="openPrivate($event)" (mentionFromChild)="addMention($event)"></app-private>
+    </div>
+            </div>
+            <div class="col-6 pl-0">
+                <div class="group-holder">
+                <h3>Rooms</h3>
+                <app-group [users]="users"></app-group>
+            </div>
+            </div>
+        </div>
+   
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+    <div class="copyright-holder">
+        <mat-icon class="copyright-icon">copyright</mat-icon> <span class="copyright-text">All rights reserved {{copyrightYear}}</span>
+
+    </div>
+    </div>
+</div>
+</div>

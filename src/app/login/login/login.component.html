@@ -1,0 +1,73 @@
+<div class="login-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8 col-md-6 col-xs-12 p-0">
+        <div class="join-without-reg-sec">
+
+        <span class="login-logo">
+          <img src="assets/images/logo-white.png" class="logo-icon">
+
+      </span>
+      <button class="login-without-reg-btn" (click)="loginWithoutReg()">Login without registration</button>
+      <p class="guidence"><b class="yellow">Warning:- By using the website you must be 18+ and before entering the chat room you agree to the :</b> TermsOfService/Disclaimers and Sharing Phone no: or email is strictly PROHIBITED within the Chat and Dont phone-call any numbers nor messaging to other platforms, otherwise you will be fully responsible for your acts and action can be taken as per the laws by the law and enforcement agencies for any bad activity found.</p>
+    </div>
+
+
+      </div>
+      <div class="col-lg-4 col-md-6 col-xs-12 pr-0">
+        <div class="login-form-holder">
+          <div class="login-form-box">
+            <h4>Sign-In</h4>
+            <div class="form-group">
+              <div class="example-container">
+                <form class="example-container" [formGroup]="loginForm">
+                  <div class="form-control-holder">
+                    <mat-form-field>
+                      <input matInput formControlName="userName" placeholder="User Name" required>
+                    </mat-form-field>
+                    <span class="text-danger"
+                      *ngIf="(loginForm.controls['userName'].touched) && loginForm.controls['userName'].errors?.['required']">
+                      User name is required
+                    </span>
+                    <span class="text-danger"
+                      *ngIf="(loginForm.controls['userName'].touched) && loginForm.controls['userName'].errors?.['minlength']">
+                      Minimum length 3 is required
+                    </span>
+                    <span class="text-danger"
+                      *ngIf="(loginForm.controls['userName'].touched) && loginForm.controls['userName'].errors?.['maxlength']">
+                      Maximum length is 15 only
+                    </span>
+                  </div>
+                  <div class="form-control-holder password-eye-padding">
+                    <mat-form-field>
+                      <input matInput [type]="passwordVisible ? 'text' : 'password'" formControlName="password"
+                        placeholder="Password" required>
+                    </mat-form-field>
+                    <div class="eye-icon-holder" (click)="passwordVisible = !passwordVisible"
+                      [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!passwordVisible">
+                      <mat-icon>{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </div>
+                    <span class="text-danger"
+                      *ngIf="(loginForm.controls['password'].touched) && loginForm.controls['password'].errors?.['required']">
+                      Password is required
+                    </span>
+                    <span class="text-danger"
+                      *ngIf="(loginForm.controls['password'].touched) && loginForm.controls['password'].errors?.['minlength']">
+                      Minimum length 3 is required
+                    </span>
+                    <span class="text-danger"
+                      *ngIf="(loginForm.controls['password'].touched) && loginForm.controls['password'].errors?.['maxlength']">
+                      Maximum length is 15 only
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <button (click)='login()'>Login</button>
+            <span class="register-now">New to here ? <a (click)='signup()'>Register Now</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

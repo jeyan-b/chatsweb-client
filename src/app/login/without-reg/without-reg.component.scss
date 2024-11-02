@@ -1,0 +1,100 @@
+::ng-deep .withoutRegComponent-dialog .mat-mdc-dialog-surface{
+    background: hsl(0deg 0% 0% / 80%);
+}
+::ng-deep  .cdk-overlay-pane.withoutRegComponent-dialog{
+    max-width: 100vw !important;
+}
+.close-icon-reg-without{
+    color: white;
+    font-size: 50px;
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.login-page {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+  }
+  
+
+  
+  .without-login-form-box {
+    text-align: center;
+    color: #fff;
+    max-width: 350px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    background: #000000;
+    padding: 25px;
+  }
+  
+  .without-login-form-box h3 {
+    font-size: 22px;
+  }
+  
+  .without-login-form-box h4 {
+    font-size: 17px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+  
+  .without-login-form-box .form-control {
+    border: none;
+    border-radius: 0px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    height: 35px;
+  }
+  
+  .without-login-form-box button {
+    width: 100%;
+    background-color: #fdca06;
+    border: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .text-danger-custom {
+    text-shadow: 1px 1px 1px black;
+    color: #fd0606 !important;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  .register-now {
+    margin-top: 15px;
+    float: left;
+    width: 100%;
+  }
+  
+  .register-now a {
+    cursor: pointer;
+    color: #fcd952 !important;
+  }
+  
+  .without-example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .without-example-container form {
+    margin-bottom: 10px;
+  }
+  
+  .without-example-container .mat-radio-button {
+    margin: 0 5px;
+  }

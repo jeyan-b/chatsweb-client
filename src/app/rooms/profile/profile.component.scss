@@ -1,0 +1,116 @@
+.profile-page {
+    width: 100%;
+    background-size: cover;
+    background-color: #e1e1e1;
+    height: 550px;
+  }
+  
+//   .profile-form-holder {
+//     background-color: var(--blue);
+//     height: 100vh;
+//   }
+  
+  .profile-form-box {
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 0px 15px;
+  }
+  
+  .profile-form-box h3 {
+    font-size: 22px;
+  }
+  
+  .profile-form-box h4 {
+    font-size: 20px;
+    padding-top: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .profile-form-box .form-control {
+    border: none;
+    border-radius: 0px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    height: 35px;
+  }
+  
+  .profile-form-box button {
+    width: 100%;
+    background-color: #fdca06;
+    border: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    max-width: 200px;
+    margin: 0px 10px;
+  }
+  
+  .text-danger-custom {
+    text-shadow: 1px 1px 1px black;
+    color: #fd0606 !important;
+    margin-top: 0px;
+    font-weight: bold;
+  }
+  
+  .register-now {
+    margin-top: 15px;
+    float: left;
+    width: 100%;
+  }
+  
+  .register-now a {
+    cursor: pointer;
+    color: #fcd952 !important;
+  }
+  
+  ::ng-deep .highlight {
+    cursor: pointer;
+    color: #fcd952 !important;
+    text-decoration: none;
+  }
+  
+  .example-container form {
+    margin-bottom: 20px;
+  }
+  
+  .example-container .mat-radio-button {
+    margin: 0 5px;
+  }
+  
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+  
+  .text-danger.agree-error {
+    text-align: center;
+    padding-left: 14%;
+  }
+
+  .discard-btn{
+    font-size: 35px;
+    height: 50px;
+    width: 50px;
+    /* position: relative; */
+    /* right: 0px; */
+    float: right;
+    margin-top: 10px;
+    color: #000;
+    cursor: pointer;
+}
+.user-icon
+{
+    width: 130px;
+    border-radius: 50%;
+    height: 130px;
+    border: 1px solid #4f4f4f;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.profile-form-box button.cancel-btn{
+    background: #212529;
+    color: #fff;
+}
