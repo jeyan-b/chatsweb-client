@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class GroupComponent {
 
   // socket = io("http://localhost:8081")
-socket = io(environment.socketIoURL);
+socket = io(environment.socketIoURL, { });
   allGroups : any = [];
   currentUserId:any= "";
   createRoomForm!: FormGroup;

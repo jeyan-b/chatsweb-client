@@ -39,16 +39,16 @@
         <div class="box-footer">     
             <!-- <input type="text" formControlName="privateMessage"> -->
       <emoji-mart class="emoji-mart" [emojiSize]="16" [isNative]="true" [showPreview]="false" [set]="set" emoji="point_up" *ngIf="window.value.emoji" (emojiSelect)="addEmoji($event, j)" title="Pick your emoji…"></emoji-mart>
-      <textarea type="text" *ngIf="!base64textString.length" [id]="'privateChatInput'+j" formControlName="privateMessage" (blur)="onBlur()" (focus)="onFocus()"></textarea>
-      <div class="image-holder" *ngIf="base64textString.length">
-        <img *ngFor="let item of base64textString"  src={{item}} alt="" id="img">
+      <textarea type="text" *ngIf="!base64textStringPrivate.length" [id]="'privateChatInput'+j" formControlName="privateMessage" (blur)="onBlur()" (focus)="onFocus()"></textarea>
+      <div class="image-holder" *ngIf="base64textStringPrivate.length">
+        <img *ngFor="let item of base64textStringPrivate"  src={{item}} alt="" id="img">
         <span class="file-name">{{fileName}}</span>
-        <mat-icon (click)="removeSelectedImage()">close</mat-icon>
+        <mat-icon (click)="removeSelectedImagePrivate()">close</mat-icon>
       </div>
       <div class="send-btns-holder">
         <button class="emoji-btn" (click)="toggleEmojiPicker($event, j)" [class.emoji-active] = "window.value.emoji"> 😀</button>
         <div class="image-upload">
-        <input type="file"  id="upload-photo" (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg" />
+        <input type="file"  id="upload-photo" (change)="onUploadChangePrivate($event)" accept=".png, .jpg, .jpeg" />
         <label for="upload-photo" class="upload-photo"><mat-icon>image</mat-icon></label>
       </div>
         <button class="send-btn" (click)="sendPrivateMsg(j, window.value)">Send</button>

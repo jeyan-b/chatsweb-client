@@ -22,7 +22,7 @@ export class RoomsComponent  implements OnInit, OnDestroy {
   users:any = []
   roomSpecificUsers:any = []
   // socket = io("http://localhost:8081")
-socket = io(environment.socketIoURL);
+socket = io(environment.socketIoURL, { });
   privateMsgs:any = []
   privateChatForm: FormGroup;
   copyrightYear: any;
@@ -48,7 +48,7 @@ sets = [
   'messenger'
 ]
 set:any = 'native';
-base64textString:any = [];
+base64textStringPrivate:any = [];
 fileName:any;
 activeRoom:any;
 
@@ -567,8 +567,8 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
       console.log(this.privateChatForm.value.privateChatInputs[i]);
       // console.log(this.privateChatForm);
       let content:any;
-      if(this.base64textString.length){
-        content = this.base64textString[0]
+      if(this.base64textStringPrivate.length){
+        content = this.base64textStringPrivate[0]
       }else{
         content =this.privateChatForm.value.privateChatInputs[i].privateMessage
       }
@@ -647,7 +647,8 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
         // }); 
        
         
-      })
+      });
+      this.removeSelectedImagePrivate()
     }
   
     }
@@ -791,7 +792,7 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
       console.log('onblur')
     }
   
-    onUploadChange(evt: any) {
+    onUploadChangePrivate(evt: any) {
       console.log(evt)
       const file = evt.target.files[0];
       this.fileName = file.name;
@@ -809,12 +810,12 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
     handleReaderLoaded(e:any) {
       console.log(e)
   
-      // this.base64textString.push('data:image/png;base64,' + btoa(e.target.result));
-      this.base64textString =['data:image/png;base64,' + btoa(e.target.result)];
-      console.log(this.base64textString)
+      // this.base64textStringPrivate.push('data:image/png;base64,' + btoa(e.target.result));
+      this.base64textStringPrivate =['data:image/png;base64,' + btoa(e.target.result)];
+      console.log(this.base64textStringPrivate)
     }
-    removeSelectedImage(){
-      this.base64textString=[];
+    removeSelectedImagePrivate(){
+      this.base64textStringPrivate=[];
       this.fileName="";
     }
 

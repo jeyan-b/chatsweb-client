@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class SocketService {
   // socket: any;
 // readonly uri: string = "ws://localhost:3000";
-socket = io(environment.socketIoURL);
+socket = io(environment.socketIoURL, { });
 // socket = io("http://localhost:8081");
   constructor() { 
     // this.socket = io(this.uri)

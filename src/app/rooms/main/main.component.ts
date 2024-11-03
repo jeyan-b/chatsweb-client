@@ -373,8 +373,10 @@ onTabChanged(event:any){
 
   sendSelectedTabMsg(){
       console.log(this.mainForm.value)
+      let content:any
       if(this.mainForm.value.selectedTabMessage !==""){
-      let content = this.mainForm.value.selectedTabMessage;
+       content = this.mainForm.value.selectedTabMessage;
+      }
       if(this.base64textString.length){
         content = this.base64textString[0]
       }
@@ -452,8 +454,9 @@ if(selectedUser.length === 0){
         //   let obj = {chat:lastMessage.chat, messages:[lastMessage]}
         //   this.allMainMessages.push(obj)
         // }         
-      })
-    }
+      });
+      this.removeSelectedImage();
+    // }
   }
 
   // sendMainMsg(i:any){
