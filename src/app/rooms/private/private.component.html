@@ -1,4 +1,21 @@
 
+<div class="users-loader" *ngIf="usersLoader">
+    <ul>
+        <li *ngFor="let user of users">
+            <span class="user-image-list">
+               
+            </span>
+            <span class="user-name-list">
+                <div class="animated-background"> </div>
+
+            </span>
+          
+            
+        </li>
+    </ul>
+
+</div>
+
 <div class="users-list">
     <ul>
         <li *ngFor="let user of users" (mouseenter)="openMenu(user.userName)" (mouseleave)="hideMenu(user.userName)">

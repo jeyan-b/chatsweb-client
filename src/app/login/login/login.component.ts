@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
 import { WithoutRegComponent } from '../without-reg/without-reg.component';
 import { MatDialog } from '@angular/material/dialog';
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +19,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   passwordVisible = false;
 
-  constructor(fb: FormBuilder, private router: Router, private dialog: MatDialog, private toastrService: ToastrService, private authenticationService: AuthenticationService) {
+  constructor(fb: FormBuilder, private router: Router, private dialog: MatDialog, private loader: NgxSpinnerService, private toastrService: ToastrService, private authenticationService: AuthenticationService) {
     this.loginForm = fb.group({
       userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]]
@@ -38,9 +40,11 @@ encryptData(value:string){
     this.loginForm.markAsDirty();
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
+      this.loader.show();
       let payload = this.loginForm.value;
       payload.password = this.encryptData(payload.password)
       this.authenticationService.login(payload).subscribe((res) => {
+      this.loader.hide();
         if (res.status === "ok") {
           const decoded: any = jwtDecode(res.data);
           localStorage.setItem("userName", decoded.userName)
@@ -52,6 +56,7 @@ encryptData(value:string){
           this.router.navigate(['rooms'])
         }
       }, err => {
+      this.loader.hide();
         this.toastrService.error(err.error);
       })
     } else {

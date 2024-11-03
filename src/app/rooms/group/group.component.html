@@ -1,3 +1,21 @@
+<div class="group-loader" *ngIf="groupsLoader">
+    <div class="group-list-with-add-btn">
+      
+        <ul>
+            <li *ngFor="let group of allGroups">
+               
+                <span class="group-image-list">
+                   </span>
+                <span class="group-name-list">  
+                            <div class="animated-background"> </div>
+                </span>
+              
+            </li>
+    
+        </ul>
+  
+    </div>
+</div>
 <div class="group-list">
     <div class="group-list-with-add-btn">
     <ul>
@@ -12,7 +30,7 @@
 
     </ul>
     <div class="create-room-btn-holder">
-<button mat-button (click)="openDialog()" class="create-room-btn">Create Room</button>
+<button mat-button (click)="openDialog()" class="create-room-btn" *ngIf="!groupsLoader">Create Room</button>
 </div>
 </div>
 

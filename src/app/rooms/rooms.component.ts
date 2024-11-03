@@ -90,8 +90,11 @@ activeRoom:any;
         
       });
       if(!userIsAvailable){
+        this.communicationService.usersLoader.next(true);
         this.communicationService.getAllUsers().subscribe((res1)=>{
           // console.log(res)
+        this.communicationService.usersLoader.next(false);
+
         let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
         
           this.users = activeUsers; 
@@ -149,7 +152,10 @@ activeRoom:any;
     //   if(!selectedUser.length){
     //     this.getAllUsers();
     //     // this.communicationService.selectedRoom.next(true)
+    this.communicationService.usersLoader.next(true);
     this.communicationService.getAllUsers().subscribe((res1)=>{
+      this.communicationService.usersLoader.next(false);
+
       // console.log(res)
     let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
 
@@ -260,9 +266,12 @@ activeRoom:any;
      console.log(selectedUserRoomSpecific)
 
      if(selectedUser.length === 0){    
+      this.communicationService.usersLoader.next(true);
       
       this.communicationService.getAllUsers().subscribe((res1)=>{
         // console.log(res)
+        this.communicationService.usersLoader.next(false);
+
       let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
 
         this.users = activeUsers; 
@@ -695,8 +704,10 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
 
 
     getAllUsers(){
+      this.communicationService.usersLoader.next(true);
       this.communicationService.getAllUsers().subscribe((res1)=>{
         console.log(res1)
+        this.communicationService.usersLoader.next(false);
       let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
 
         this.users = activeUsers; 

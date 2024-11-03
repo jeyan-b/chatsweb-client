@@ -5,6 +5,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,7 @@ export class SignupComponent {
   selected = '';
   passwordVisible = false;
 
-  constructor(private toastr: ToastrService, fb: FormBuilder, private router: Router, private authenticationService: AuthenticationService) {
+  constructor(private toastr: ToastrService, fb: FormBuilder, private router: Router,private loader: NgxSpinnerService, private authenticationService: AuthenticationService) {
     this.signupForm = fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       lastName: [''],
@@ -53,16 +54,19 @@ export class SignupComponent {
     }
 
     if (this.signupForm.valid) {
+      this.loader.show();
       let payload = this.signupForm.value
       // payload.password = window.btoa(payload.password)
       payload.password = this.encryptData(payload.password);
       this.authenticationService.signup(payload).subscribe((res) => {
+      this.loader.hide();
         this.toastr.success('Account has been created successfully', 'Success!');
         setTimeout(() => {
           this.router.navigate(['login']);
         }, 2000);
       },
         err => {
+      this.loader.hide();
           // console.log(err.error)
           if(err.error === 'User name not available'){
             this.signupForm.controls['userName'].setErrors({ 'incorrect': true })

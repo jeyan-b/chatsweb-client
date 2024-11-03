@@ -12,6 +12,8 @@ export class CommunicationService {
   groupChatMessage = new Subject<any>();
   selectedRoom =new Subject<any>();
   checkUsers =new Subject<any>();
+ groupsLoader =new Subject<any>();
+ usersLoader =new Subject<any>();
   public users = [];
   public tabs = [];
   public roomSpecificUsers = [];

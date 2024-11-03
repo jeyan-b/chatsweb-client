@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommunicationService } from '../services/communication.service';
 
 @Component({
   selector: 'app-private',
@@ -11,9 +12,15 @@ export class PrivateComponent {
   @Output() openPrivateFromChild = new EventEmitter();
   @Output() mentionFromChild = new EventEmitter();
   currentUserId:any;
+  usersLoader = false;
+  constructor(private communicationService: CommunicationService){
+
+  }
   ngOnInit() {
     this.currentUserId = localStorage.getItem('userId')
-
+    this.communicationService.usersLoader.subscribe(res =>{
+      this.usersLoader =res;
+    })
   }
   openMenu(name:string){
     // // console.log("open: "+name);

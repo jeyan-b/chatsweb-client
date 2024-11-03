@@ -131,6 +131,24 @@ $green: #34a853;
     font-size: 12px;
   }
     }
+    @media (max-width: 850px) {
+   
+      .login-form-holder {
+        height: 100vh !important;
+      }
+    }
+    @media (max-width: 489px) {
+      .join-without-reg-sec {
+        min-height: auto;
+        padding-bottom: 20px;
+    }
+    .login-without-reg-btn, .chat-without-reg-text {
+      line-height: 33px;
+  }
+  .signup-img {
+    margin-top: 0px;
+}
+    }
     .mt-15{
       margin-top: 15px;
     }

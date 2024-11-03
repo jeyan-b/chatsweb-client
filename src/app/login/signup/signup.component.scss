@@ -84,3 +84,42 @@
   text-align: center;
   padding-left: 14%;
 }
+.signup-banner img{
+max-width: 100%;
+}
+.login-logo img{
+  max-width: 300px;
+  margin: 0 auto;
+  float: none;
+  display: block;
+  width: 100%;
+}
+.chat-without-reg-text{
+  margin: 0 auto;
+  float: none;
+  display: block;
+  padding: 10px 0px 30px 0px;
+  font-size: 25px;
+  text-transform: capitalize;
+  text-align: center;
+  color: #fff;
+}
+.height-50{
+  height: 50vh;
+}
+.height-full{
+  background: radial-gradient(#0d71f0, #4a4a4a);
+  height: 100vh;
+  overflow: hidden;
+}
+.signup-img-holder{
+  height: 100%;
+}
+.signup-img{
+  max-height: 100%;
+  margin: 0 auto;
+  float: none;
+  display: block;
+  max-width: 100%;
+  margin-top: -80px;
+}

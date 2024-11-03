@@ -22,7 +22,7 @@ socket = io(environment.socketIoURL, { });
   openedTabs:any
 
   // @Output() allPublicRoomsEvent = new EventEmitter();
-
+  groupsLoader= false
   @Input() users: any;
   // readonly dialog = inject(MatDialog);
   @ViewChild('callAPIDialog') callAPIDialog!: TemplateRef<any>;
@@ -34,6 +34,9 @@ socket = io(environment.socketIoURL, { });
   ngOnInit() {
     this.communicationService.selectedRoom.subscribe(res =>{
       this.selectedRoomFromMain =res;
+    })
+    this.communicationService.groupsLoader.subscribe(res =>{
+      this.groupsLoader =res;
     })
     this.createRoomForm = this.fb.group({
       roomName:  new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)])
@@ -114,7 +117,11 @@ refreshGroups(res:any){
   // }
 
   getGroups(){
+    this.communicationService.groupsLoader.next(true);
+
     this.communicationService.getAllGroups().subscribe((res:any)=>{
+    this.communicationService.groupsLoader.next(false);
+
       console.log(res)
       // this.allGroups = res;   
       this.allGroupsSetup(res)
@@ -135,8 +142,10 @@ refreshGroups(res:any){
   //   console.log(group)
   // }
   joinGroup(groupFromUI:any){
-    // this.communicationService.checkUsers.next(true)
+    this.communicationService.groupsLoader.next(true);
     this.communicationService.getAllGroups().subscribe((res:any)=>{
+    this.communicationService.groupsLoader.next(false);
+
       console.log(res)  
       // this.allGroupsSetup(res)
 this.refreshGroups(res)

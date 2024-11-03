@@ -83,3 +83,62 @@
   white-space: nowrap;
   max-width: 75%;
 }
+.users-loader{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+.users-loader ul li{
+  list-style: none;
+  float: left;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  padding: 5px 10px;
+  position: relative;
+  border-left: 5px solid transparent;
+}
+.users-loader ul {
+padding: 0;
+margin: 0;
+height: calc(100% - 65px);
+background-color: whitesmoke;
+overflow-y: auto;
+}
+.users-loader ul li .user-name-list {
+width: calc(100% - 33px);
+}
+.users-loader ul li .user-image-list {
+animation-duration: 1s;
+animation-fill-mode: forwards;
+animation-iteration-count: infinite;
+animation-name: placeHolderShimmer;
+animation-timing-function: linear;
+background: #f6f7f8;
+background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+background-size: 800px 104px;
+height: 23px;
+position: relative;
+border-radius: 50%;
+}
+
+@keyframes placeHolderShimmer {
+0% {
+    background-position: -468px 0
+}
+100% {
+    background-position: 468px 0
+}
+}
+
+.animated-background {
+animation-duration: 1s;
+animation-fill-mode: forwards;
+animation-iteration-count: infinite;
+animation-name: placeHolderShimmer;
+animation-timing-function: linear;
+background: #f6f7f8;
+background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+background-size: 800px 104px;
+height: 23px;
+position: relative;
+}

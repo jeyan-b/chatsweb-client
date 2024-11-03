@@ -14,7 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { WithoutRegComponent } from './without-reg/without-reg.component';
 // import {provideNativeDateAdapter} from '@angular/material/core';
 // import { ToastrModule } from 'ngx-toastr';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { WithoutRegComponent } from './without-reg/without-reg.component';
     MatFormFieldModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule,
     // ToastrModule.forRoot()
+    NgxSpinnerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers:[
     AuthenticationService,
     // provideNativeDateAdapter()

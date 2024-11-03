@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ProfileComponent } from 'src/app/rooms/profile/profile.component';
 import { CommunicationService } from 'src/app/rooms/services/communication.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-without-reg',
@@ -22,6 +24,7 @@ export class WithoutRegComponent {
     private dialogRef: MatDialogRef<WithoutRegComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   private toastr: ToastrService, fb: FormBuilder, private router: Router,
+  private loader: NgxSpinnerService,
   private authenticationService: AuthenticationService,
   private toastrService: ToastrService) {
     this.withoutLoginForm = fb.group({
@@ -38,8 +41,10 @@ export class WithoutRegComponent {
       this.withoutLoginForm.markAllAsTouched();
       console.log(this.withoutLoginForm.value);
       if (this.withoutLoginForm.valid) {
+      this.loader.show();
         let payload = this.withoutLoginForm.value;
         this.authenticationService.withoutLogin(payload).subscribe((res) => {
+      this.loader.hide();
           // if (res.status === "ok") {
           //   const decoded: any = jwtDecode(res.data);
             localStorage.setItem("userName", res.userName)
@@ -53,6 +58,7 @@ export class WithoutRegComponent {
             this.router.navigate(['rooms'])
           // }
         }, err => {
+      this.loader.hide();
           if(err.error === 'User name not available'){
             this.withoutLoginForm.controls['userName'].setErrors({ 'incorrect': true })
             this.toastr.error('User name is not available, please try with another!');
