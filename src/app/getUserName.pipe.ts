@@ -26,7 +26,7 @@ users:any = [];
         }
         // console.log(messages[0]?.messages);
         let name :any;
-        if(user[0]?.firstName === 'empty'){
+        if(user[0]?.firstName === 'unknown'){
             name = user[0]?.userName 
         }else{
             name = user[0]?.firstName+" "+user[0]?.lastName

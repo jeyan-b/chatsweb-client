@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommunicationService } from '../services/communication.service';
+import { UserAboutComponent } from '../user-about/user-about.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-private',
@@ -13,7 +15,7 @@ export class PrivateComponent {
   @Output() mentionFromChild = new EventEmitter();
   currentUserId:any;
   // usersLoader = false;
-  constructor(private communicationService: CommunicationService){
+  constructor(private communicationService: CommunicationService, private dialog: MatDialog,){
 
   }
   ngOnInit() {
@@ -33,5 +35,15 @@ export class PrivateComponent {
     // (document.querySelector(".users-list ul") as HTMLElement).style.overflowY = 'auto';
     (document.getElementById(name) as HTMLElement).style.display = 'none';
 
+  }
+
+  aboutClick(currentUser:any){
+    const dialogRef = this.dialog.open(UserAboutComponent, {
+      width: '450px',
+      height: '450px',
+      data: {
+        userId: currentUser._id
+      }
+    });
   }
 }

@@ -65,7 +65,7 @@
     <div class="row header">
         <div class="col-3">
             <span class="logo">
-                <img src="assets/images/logo-white.png" class="logo-icon">
+                <img src="assets/images/logo-white-text.png" class="logo-icon">
 
             </span>
         </div>
@@ -81,9 +81,9 @@
         <div class="col-3">
             <ul class="top-menu-item">
                 <li class="username" [matMenuTriggerFor]="menu">
-                    <img src="assets/images/icons/man.png" class="user-icon">
-                    <span *ngIf="currentUser.firstName !== 'empty'">{{currentUser.firstName}} {{currentUser.lastName}}</span>
-                    <span *ngIf="currentUser.firstName === 'empty'">{{currentUser.userName}}</span>
+                    <img src="assets/images/icons/{{currentUser.gender}}.png" class="user-icon">
+                    <span *ngIf="currentUser.firstName !== 'unknown'">{{currentUser.firstName}} {{currentUser.lastName}}</span>
+                    <span *ngIf="currentUser.firstName === 'unknown'">{{currentUser.userName}}</span>
                     <mat-menu #menu="matMenu" yPosition="below">
                         <button mat-menu-item (click)="profileClick(currentUser)">Profile</button>
                         <button mat-menu-item (click)="logout()">Logout</button>
@@ -104,14 +104,14 @@
         <div class="row">
             <div class="col-6 pl-0 pr-0">
                 <div class="users-holder" [ngStyle]="{'border': '1px solid '+activeColor}">
-                    <h3 [ngStyle]="{'background-color': activeColor, 'color': 'black'}">Users</h3>
+                    <h3 [ngStyle]="{'background-color': activeColor, 'color': 'black'}">Users({{roomSpecificUsers?.length}})</h3>
         <app-private [users]="roomSpecificUsers" (openPrivateFromChild)="openPrivate($event)" (mentionFromChild)="addMention($event)"></app-private>
     </div>
             </div>
             <div class="col-6 pl-0">
                 <div class="group-holder">
-                <h3>Rooms</h3>
-                <app-group [users]="users"></app-group>
+                <h3>Rooms({{allGroups?.length}}) <span class="counter">Ref in {{counter}}</span></h3>
+                <app-group [users]="users" [allGroupsFromAPI]="allGroups"></app-group>
             </div>
             </div>
         </div>

@@ -24,6 +24,7 @@ socket = io(environment.socketIoURL, { });
   // @Output() allPublicRoomsEvent = new EventEmitter();
   // groupsLoader= false
   @Input() users: any;
+  @Input() allGroupsFromAPI: any;
   // readonly dialog = inject(MatDialog);
   @ViewChild('callAPIDialog') callAPIDialog!: TemplateRef<any>;
   @ViewChild('roomSelectionDialog') roomSelectionDialog!: TemplateRef<any>;
@@ -41,12 +42,15 @@ socket = io(environment.socketIoURL, { });
     this.createRoomForm = this.fb.group({
       roomName:  new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)])
     });
-this.getGroups();
+// this.getGroups();
 //     setInterval(() => {
 // this.getGroups();
 //     }, 10000);
 this.currentUserId = localStorage.getItem('userId');
 
+   this.communicationService.roomsRefresh.subscribe(res =>{
+    this.allGroupsSetup(res);
+    })
 
   }
   // ngAfterViewInit(){
@@ -73,6 +77,7 @@ refreshGroups(res:any){
   this.communicationService.allGroups = this.allGroups;
 }
   allGroupsSetup(res:any){
+    // let res= this.allGroupsFromAPI
     // let colorArray:any = ['red', 'blue', 'orange', 'green', 'cyan', 'violet', 'yellow', 'gray']
    this.refreshGroups(res)
     console.log(this.allGroups)
@@ -116,28 +121,28 @@ refreshGroups(res:any){
   //       });
   // }
 
-  getGroups(){
-    // this.communicationService.groupsLoader.next(true);
+  // getGroups(){
+  //   // this.communicationService.groupsLoader.next(true);
 
-    this.communicationService.getAllGroups().subscribe((res:any)=>{
-    // this.communicationService.groupsLoader.next(false);
+  //   this.communicationService.getAllGroups().subscribe((res:any)=>{
+  //   // this.communicationService.groupsLoader.next(false);
 
-      console.log(res)
-      // this.allGroups = res;   
-      this.allGroupsSetup(res)
+  //     console.log(res)
+  //     // this.allGroups = res;   
+  //     this.allGroupsSetup(res)
 
 
-      // this.allPrivateRooms = [];
-      // this.users.forEach((user:any) => {
-      //   this.socket.emit('setup', user);
-      //   this.socket.on("connection", () => {
-      //     // this.isthis.socketConnected = true;
-      //     console.log("user connecting..."+user);
-      //   });
-      //   this.checkChatRoom(user)
-      // });
-    })
-  }
+  //     // this.allPrivateRooms = [];
+  //     // this.users.forEach((user:any) => {
+  //     //   this.socket.emit('setup', user);
+  //     //   this.socket.on("connection", () => {
+  //     //     // this.isthis.socketConnected = true;
+  //     //     console.log("user connecting..."+user);
+  //     //   });
+  //     //   this.checkChatRoom(user)
+  //     // });
+  //   })
+  // }
   // joinGroup(group:any){
   //   console.log(group)
   // }
@@ -252,7 +257,7 @@ console.log(group.users)
             'Success!'
           );
           this.createRoomForm.reset();
-          this.getGroups();
+          // this.getGroups();
 
           });
         }else{
