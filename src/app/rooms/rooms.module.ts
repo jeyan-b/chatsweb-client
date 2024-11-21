@@ -19,6 +19,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { ProfileComponent } from './profile/profile.component';
+import { UserAboutComponent } from './user-about/user-about.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ProfileComponent } from './profile/profile.component';
     RoomsComponent,
     GroupComponent,
     UserNameFilterPipe,
-    ProfileComponent
+    ProfileComponent,
+    UserAboutComponent
   ],
   imports: [
     CommonModule,

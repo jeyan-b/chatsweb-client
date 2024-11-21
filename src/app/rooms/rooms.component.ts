@@ -51,7 +51,8 @@ set:any = 'native';
 base64textStringPrivate:any = [];
 fileName:any;
 activeRoom:any;
-
+allGroups: any;
+counter= 30
 
   constructor(private toastr: ToastrService, private dialog: MatDialog, private fb: FormBuilder, private router:Router, private communicationService: CommunicationService) {
     this.privateChatForm = this.fb.group({
@@ -136,112 +137,112 @@ activeRoom:any;
     }
   });
 
-    this.socket.on("user joined", (userJoinedRoom) => {
-      // alert('user joined');
-      console.log(userJoinedRoom)
-      console.log(this.users);
-      // let selectedGroup =  res.filter((room:any) => room.chatRoom.chatName.toString() === this.activeRoom?.toString());
-      // this.communicationService.roomSpecificUsers = selectedGroup[0].chatRoom.users
+    // this.socket.on("user joined", (userJoinedRoom) => {
+    //   // alert('user joined');
+    //   console.log(userJoinedRoom)
+    //   console.log(this.users);
+    //   // let selectedGroup =  res.filter((room:any) => room.chatRoom.chatName.toString() === this.activeRoom?.toString());
+    //   // this.communicationService.roomSpecificUsers = selectedGroup[0].chatRoom.users
       
-      // this.communicationService.getGroupById(selectedGroup[0].chatRoom._id).subscribe(room =>{
-      //   this.communicationService.roomSpecificUsers = room.chatRoom.users
-      // });
+    //   // this.communicationService.getGroupById(selectedGroup[0].chatRoom._id).subscribe(room =>{
+    //   //   this.communicationService.roomSpecificUsers = room.chatRoom.users
+    //   // });
 
-    //   let selectedUser = this.users.filter((user:any) => user._id.toString() === userJoinedRoom?.toString());
-    //  console.log(selectedUser)
-    //   if(!selectedUser.length){
-    //     this.getAllUsers();
-    //     // this.communicationService.selectedRoom.next(true)
-    // this.communicationService.usersLoader.next(true);
-    this.communicationService.getAllUsers().subscribe((res1)=>{
-      // this.communicationService.usersLoader.next(false);
+    // //   let selectedUser = this.users.filter((user:any) => user._id.toString() === userJoinedRoom?.toString());
+    // //  console.log(selectedUser)
+    // //   if(!selectedUser.length){
+    // //     this.getAllUsers();
+    // //     // this.communicationService.selectedRoom.next(true)
+    // // this.communicationService.usersLoader.next(true);
+    // this.communicationService.getAllUsers().subscribe((res1)=>{
+    //   // this.communicationService.usersLoader.next(false);
 
-      // console.log(res)
-    let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
+    //   // console.log(res)
+    // let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
 
-      this.users = activeUsers; 
-      this.communicationService.users =  activeUsers;
-
-
-        this.communicationService.getAllGroups().subscribe((res:any)=>{
-          console.log(res)
-          let selectedGroup =  res.filter((room:any) => room.chatName.toString() === this.activeRoom?.toString());
-          // this.communicationService.roomSpecificUsers = selectedGroup[0].chatRoom.users
-          if(selectedGroup.length){
-
-          this.communicationService.getGroupById(selectedGroup[0]._id).subscribe(room =>{
-            console.log(this.roomSpecificUsers);
-            console.log(room)
-            console.log(this.users)
-            console.log(room.chatRoom.users)
-            this.roomSpecificUsers =[];
-            this.users.forEach((us:any) => {
-            if(room.chatRoom.users.includes(us._id?.toString())){
-              this.roomSpecificUsers.push(us)
-            }
-          })
-          this.communicationService.roomSpecificUsers = this.roomSpecificUsers;
-          console.log(this.roomSpecificUsers);
-
-          let newlyJoinedUser = this.users.filter((user:any) => user._id.toString() === userJoinedRoom?.toString());
+    //   this.users = activeUsers; 
+    //   this.communicationService.users =  activeUsers;
 
 
-          // this.users.forEach((user:any) => {
-            console.log(newlyJoinedUser[0]._id +"=== "+userJoinedRoom)
-            // if(user._id === this.currentUserId){
-            //   this.currentUser = user;
-            // }else{
+    //     this.communicationService.getAllGroups().subscribe((res:any)=>{
+    //       console.log(res)
+    //       let selectedGroup =  res.filter((room:any) => room.chatName.toString() === this.activeRoom?.toString());
+    //       // this.communicationService.roomSpecificUsers = selectedGroup[0].chatRoom.users
+    //       if(selectedGroup.length){
+
+    //       this.communicationService.getGroupById(selectedGroup[0]._id).subscribe(room =>{
+    //         console.log(this.roomSpecificUsers);
+    //         console.log(room)
+    //         console.log(this.users)
+    //         console.log(room.chatRoom.users)
+    //         this.roomSpecificUsers =[];
+    //         this.users.forEach((us:any) => {
+    //         if(room.chatRoom.users.includes(us._id?.toString())){
+    //           this.roomSpecificUsers.push(us)
+    //         }
+    //       })
+    //       this.communicationService.roomSpecificUsers = this.roomSpecificUsers;
+    //       console.log(this.roomSpecificUsers);
+
+    //       let newlyJoinedUser = this.users.filter((user:any) => user._id.toString() === userJoinedRoom?.toString());
+
+
+    //       // this.users.forEach((user:any) => {
+    //         console.log(newlyJoinedUser[0]._id +"=== "+userJoinedRoom)
+    //         // if(user._id === this.currentUserId){
+    //         //   this.currentUser = user;
+    //         // }else{
               
-            // }
-            this.checkChatRoom(newlyJoinedUser[0])
-            // this.socket.emit('setup', newlyJoinedUser[0]);
-            this.socket.on("connection", () => {
-              // this.isthis.socketConnected = true;
-              console.log("user connecting..."+newlyJoinedUser[0]);
-            });
-          // });
+    //         // }
+    //         this.checkChatRoom(newlyJoinedUser[0])
+    //         // this.socket.emit('setup', newlyJoinedUser[0]);
+    //         this.socket.on("connection", () => {
+    //           // this.isthis.socketConnected = true;
+    //           console.log("user connecting..."+newlyJoinedUser[0]);
+    //         });
+    //       // });
 
         
-      //       room.chatRoom.users.forEach((userId:any) => {
-      // let userIsAvailable = false
-      //         this.users.forEach((us:any) => {
-      //           // let userId:any = ;
+    //   //       room.chatRoom.users.forEach((userId:any) => {
+    //   // let userIsAvailable = false
+    //   //         this.users.forEach((us:any) => {
+    //   //           // let userId:any = ;
 
-      //           if(us._id === userId){
-      //  userIsAvailable = true
+    //   //           if(us._id === userId){
+    //   //  userIsAvailable = true
 
 
-      //           }else{
-      //  userIsAvailable = false
+    //   //           }else{
+    //   //  userIsAvailable = false
 
-      //           }
-      //           let commServRoomSpecUsers:any = this.communicationService.roomSpecificUsers
-      //           if(commServRoomSpecUsers.includes(us._id?.toString())){
-      //             this.roomSpecificUsers.push(us)
-      //           }else{
-      //            userIsAvailable = false;
-      //           }
+    //   //           }
+    //   //           let commServRoomSpecUsers:any = this.communicationService.roomSpecificUsers
+    //   //           if(commServRoomSpecUsers.includes(us._id?.toString())){
+    //   //             this.roomSpecificUsers.push(us)
+    //   //           }else{
+    //   //            userIsAvailable = false;
+    //   //           }
                 
-      //         });
-      //       });
+    //   //         });
+    //   //       });
       
 
-            // this.communicationService.roomSpecificUsers = room.chatRoom.users
-            // this.roomSpecificUsers = room.chatRoom.users
-          });
-        }
-
-        })
-      })
-    //   }else{
-    //    let isRoomSpecificUsersContains= this.roomSpecificUsers.filter((user:any) => user._id.toString() === selectedUser[0]._id?.toString());
-    //     if(!isRoomSpecificUsersContains.length){
-    //       this.roomSpecificUsers.push(selectedUser[0])
+    //         // this.communicationService.roomSpecificUsers = room.chatRoom.users
+    //         // this.roomSpecificUsers = room.chatRoom.users
+    //       });
     //     }
-      // }
 
-      // this.getAllUsers();
-    })
+    //     })
+    //   })
+    // //   }else{
+    // //    let isRoomSpecificUsersContains= this.roomSpecificUsers.filter((user:any) => user._id.toString() === selectedUser[0]._id?.toString());
+    // //     if(!isRoomSpecificUsersContains.length){
+    // //       this.roomSpecificUsers.push(selectedUser[0])
+    // //     }
+    //   // }
+
+    //   // this.getAllUsers();
+    // })
     // this.socket.on("connected", (userJoinedRoom) => {
     //   alert('connected');
     //   console.log(userJoinedRoom)
@@ -279,9 +280,13 @@ activeRoom:any;
         let selectedUserAgainCheck = this.users.filter((user:any) => user._id.toString() === newMessageReceived.sender?.toString());
         console.log(selectedUserAgainCheck);
         if(selectedUserAgainCheck.length){
-          this.roomSpecificUsers.push(selectedUserAgainCheck[0]);
+      let selectedUserRoomSpecificDuplicateCheck = this.roomSpecificUsers.filter((user:any) => user._id.toString() === selectedUserAgainCheck[0]._id?.toString());
+if(!selectedUserRoomSpecificDuplicateCheck.length){
+  this.roomSpecificUsers.push(selectedUserAgainCheck[0]);
+
+}
+this.progressNewMessage(newMessageReceived);
         }    
-        this.progressNewMessage(newMessageReceived)
       })
    
     }else if(selectedUser.length && (!selectedUserRoomSpecific.length)){
@@ -293,7 +298,7 @@ activeRoom:any;
     }         
     });
   // });
-  this.getAllUsers();
+  this.getGroups();
   this.currentUserName = localStorage.getItem('userName')
   this.currentUserId = localStorage.getItem('userId')
   // this.this.socketService.listen("message received").subscribe((newMessageReceived)=>{
@@ -302,9 +307,18 @@ activeRoom:any;
   this.communicationService.checkUsers.subscribe(res =>{
   this.getAllUsers();
   })
+  this.counter = 30;
+  setInterval(() => {
+    this.counter -= 1
+    if(this.counter === 0){
+      this.getGroups();
+      this.counter = 30;
+    }
+  }, 1000);
   }
 
   progressNewMessage(newMessageReceived:any){
+    console.log("progressNewMessage---")
     let type ="";
     if(newMessageReceived.sender?.toString() === localStorage.getItem('userId')?.toString()){
       type = "sent"
@@ -317,7 +331,7 @@ activeRoom:any;
     this.users.forEach((user:any) => {
       if(user._id.toString() === newMessageReceived.sender?.toString()){
         // name = user.userName
-        if(user.firstName === 'empty'){
+        if(user.firstName === 'unknown'){
           name = user.userName
         }else{
           name= user.firstName + " "+ user.lastName
@@ -394,7 +408,7 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
    console.log(this.privateWindow);
    if(user){
     let name:any;
-    if(user.firstName === 'empty'){
+    if(user.firstName === 'unknown'){
       name = user.userName
     }else{
       name= user.firstName + " "+ user.lastName
@@ -488,7 +502,7 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
         
       });
       let name:any;
-      if(user.firstName === 'empty'){
+      if(user.firstName === 'unknown'){
         name = user.userName
       }else{
         name= user.firstName + " "+ user.lastName
@@ -611,7 +625,7 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
       let currUserDet = this.users.filter((user:any) => user._id === this.currentUserId);
 
         let name:any;
-        if(currUserDet[0].firstName === 'empty'){
+        if(currUserDet[0].firstName === 'unknown'){
           name = currUserDet[0].userName
         }else{
           name= currUserDet[0].firstName + " "+ currUserDet[0].lastName
@@ -725,6 +739,10 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
             // this.isthis.socketConnected = true;
             console.log("user connecting..."+user);
           });
+      let selectedUserRoomSpecific = this.roomSpecificUsers.filter((user1:any) => user1._id.toString() === user._id?.toString());
+          if(!selectedUserRoomSpecific.length){
+            this.roomSpecificUsers.push(user)
+          }
         });
       })
     }
@@ -900,5 +918,16 @@ profileClick(currentUser:any){
       userId: currentUser._id
     }
   });
+}
+
+getGroups(){
+  // this.communicationService.groupsLoader.next(true);
+
+  this.communicationService.getAllGroups().subscribe((res:any)=>{
+    console.log(res)   
+    this.allGroups = res;
+    this.communicationService.roomsRefresh.next(res);
+    this.getAllUsers();
+  })
 }
 }

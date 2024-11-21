@@ -322,9 +322,10 @@ position: relative;
   height: 100px;
 }
 .logo-icon{
-  width: 200px;
-  margin-top: -82px;
-  margin-left: -34px;
+  width: 140px;
+  margin-top: -2px;
+  /* margin-left: -34px; */
+  max-width: 100%;
 }
 .animated {
   overflow: hidden;
@@ -374,4 +375,8 @@ position: relative;
   opacity: 0;
   position: absolute;
   z-index: -1;
+}
+.counter{
+  font-size: 12px;
+  float: right;
 }
