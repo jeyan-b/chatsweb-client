@@ -43,13 +43,13 @@
       <div class="image-holder" *ngIf="base64textStringPrivate.length">
         <img *ngFor="let item of base64textStringPrivate"  src={{item}} alt="" id="img">
         <span class="file-name">{{fileName}}</span>
-        <mat-icon (click)="removeSelectedImagePrivate()">close</mat-icon>
+        <mat-icon (click)="removeSelectedImagePrivate(j)">close</mat-icon>
       </div>
       <div class="send-btns-holder">
         <button class="emoji-btn" (click)="toggleEmojiPicker($event, j)" [class.emoji-active] = "window.value.emoji"> 😀</button>
         <div class="image-upload">
-        <input type="file"  id="upload-photo" (change)="onUploadChangePrivate($event)" accept=".png, .jpg, .jpeg" />
-        <label for="upload-photo" class="upload-photo"><mat-icon>image</mat-icon></label>
+        <input type="file"   class="upload-photo-input" [id]="'upload-photo'+j" (change)="onUploadChangePrivate($event)" accept=".png, .jpg, .jpeg" />
+        <label [for]="'upload-photo'+j" class="upload-photo"><mat-icon>image</mat-icon></label>
       </div>
         <button class="send-btn" (click)="sendPrivateMsg(j, window.value)">Send</button>
       </div>

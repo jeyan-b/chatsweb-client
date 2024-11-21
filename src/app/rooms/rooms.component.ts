@@ -90,10 +90,10 @@ activeRoom:any;
         
       });
       if(!userIsAvailable){
-        this.communicationService.usersLoader.next(true);
+        // this.communicationService.usersLoader.next(true);
         this.communicationService.getAllUsers().subscribe((res1)=>{
           // console.log(res)
-        this.communicationService.usersLoader.next(false);
+        // this.communicationService.usersLoader.next(false);
 
         let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
         
@@ -152,9 +152,9 @@ activeRoom:any;
     //   if(!selectedUser.length){
     //     this.getAllUsers();
     //     // this.communicationService.selectedRoom.next(true)
-    this.communicationService.usersLoader.next(true);
+    // this.communicationService.usersLoader.next(true);
     this.communicationService.getAllUsers().subscribe((res1)=>{
-      this.communicationService.usersLoader.next(false);
+      // this.communicationService.usersLoader.next(false);
 
       // console.log(res)
     let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
@@ -266,11 +266,11 @@ activeRoom:any;
      console.log(selectedUserRoomSpecific)
 
      if(selectedUser.length === 0){    
-      this.communicationService.usersLoader.next(true);
+      // this.communicationService.usersLoader.next(true);
       
       this.communicationService.getAllUsers().subscribe((res1)=>{
         // console.log(res)
-        this.communicationService.usersLoader.next(false);
+        // this.communicationService.usersLoader.next(false);
 
       let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
 
@@ -657,7 +657,7 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
        
         
       });
-      this.removeSelectedImagePrivate()
+      this.removeSelectedImagePrivate(i)
     }
   
     }
@@ -704,10 +704,10 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
 
 
     getAllUsers(){
-      this.communicationService.usersLoader.next(true);
+      // this.communicationService.usersLoader.next(true);
       this.communicationService.getAllUsers().subscribe((res1)=>{
         console.log(res1)
-        this.communicationService.usersLoader.next(false);
+        // this.communicationService.usersLoader.next(false);
       let activeUsers = res1.filter((user:any) => user.isLoggedIn === true);
 
         this.users = activeUsers; 
@@ -825,7 +825,7 @@ this.communicationService.groupChatMessage.next(newMessageReceived);
       this.base64textStringPrivate =['data:image/png;base64,' + btoa(e.target.result)];
       console.log(this.base64textStringPrivate)
     }
-    removeSelectedImagePrivate(){
+    removeSelectedImagePrivate(ind:any){
       this.base64textStringPrivate=[];
       this.fileName="";
     }

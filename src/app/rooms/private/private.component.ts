@@ -12,15 +12,15 @@ export class PrivateComponent {
   @Output() openPrivateFromChild = new EventEmitter();
   @Output() mentionFromChild = new EventEmitter();
   currentUserId:any;
-  usersLoader = false;
+  // usersLoader = false;
   constructor(private communicationService: CommunicationService){
 
   }
   ngOnInit() {
     this.currentUserId = localStorage.getItem('userId')
-    this.communicationService.usersLoader.subscribe(res =>{
-      this.usersLoader =res;
-    })
+    // this.communicationService.usersLoader.subscribe(res =>{
+    //   this.usersLoader =res;
+    // })
   }
   openMenu(name:string){
     // // console.log("open: "+name);
