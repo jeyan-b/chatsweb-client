@@ -336,7 +336,8 @@ position: relative;
 .animated > * {
   display: inline-block;
   position: relative;
-  animation: 50s linear 0s infinite alternate move;
+  animation: 50s linear 0s infinite move;
+  // animation: 50s linear 0s infinite alternate move;
 }
 
 .animated > *.min {
