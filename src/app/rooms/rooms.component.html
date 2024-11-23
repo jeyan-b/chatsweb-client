@@ -104,7 +104,10 @@
         <div class="row">
             <div class="col-6 pl-0 pr-0">
                 <div class="users-holder" [ngStyle]="{'border': '1px solid '+activeColor}">
-                    <h3 [ngStyle]="{'background-color': activeColor, 'color': 'black'}">Users({{roomSpecificUsers?.length}})</h3>
+                    <h3 [ngStyle]="{'background-color': activeColor, 'color': 'black'}">Users({{roomSpecificUsers?.length}})
+
+                        
+                    </h3>
         <app-private [users]="roomSpecificUsers" (openPrivateFromChild)="openPrivate($event)" (mentionFromChild)="addMention($event)"></app-private>
     </div>
             </div>
